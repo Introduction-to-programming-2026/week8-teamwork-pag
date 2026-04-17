@@ -16,15 +16,15 @@
 #   Scratch 28
 
 from cs50 import SQL
+from pathlib import Path
 
-# Open the database
-db = SQL("sqlite:///favorites.db")
+# Open the database relative to this script's folder
+db_path = Path(__file__).parent.parent / "favorites.db"
+db = SQL(f"sqlite:///{db_path}")
 
-# TODO: Write a SQL query that:
-#   - SELECTs language and COUNT(*) AS n
-#   - FROM the favorites table
-#   - GROUPs BY language
-#   - ORDERs BY n DESC
-# Store the result in a variable called 'rows'
+rows = db.execute(
+    "SELECT language, COUNT(*) AS n FROM favorites GROUP BY language ORDER BY n DESC"
+)
 
-# TODO: Loop over rows and print row["language"] and row["n"]
+for row in rows:
+    print(f"{row['language']} {row['n']}")
