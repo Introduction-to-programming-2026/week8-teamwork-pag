@@ -9,8 +9,11 @@
 #            not calling it. sorted() will call it for you.
 
 import csv
+from pathlib import Path
 
-with open("../week1/favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent.parent / "part1/favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
     counts = {}
     for row in reader:
@@ -25,3 +28,5 @@ with open("../week1/favorites.csv", "r") as file:
 #   Python: 196
 #   C: 40
 #   Scratch: 28
+for favorite in sorted(counts, key=counts.get, reverse=True):
+    print(f"{favorite}: {counts[favorite]}")
