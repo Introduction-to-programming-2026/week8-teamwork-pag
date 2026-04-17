@@ -15,4 +15,5 @@ csv_path = Path(__file__).parent.parent / "favorites.csv"
 with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
-        print(row["language"])
+        language = row["language"]
+        print(language)
