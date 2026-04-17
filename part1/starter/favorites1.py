@@ -6,11 +6,13 @@
 #      row[1] tells you nothing. favorite = row[1] tells you exactly what row[1] is.
 
 import csv
+from pathlib import Path
 
-with open("favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent / "favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.reader(file)
     next(reader)
     for row in reader:
-        # TODO: Store row[1] in a variable called 'favorite'
-        # TODO: Print favorite
-        pass
+        favorite = row[1]
+        print(favorite)
