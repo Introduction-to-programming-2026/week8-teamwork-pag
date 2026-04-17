@@ -8,14 +8,20 @@
 # The result is identical to favorites5.py — the style is different.
 
 import csv
+from pathlib import Path
 
-with open("../week1/favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent.parent / "part1/favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
     counts = {}
+
     for row in reader:
         favorite = row["language"]
-        # TODO: try to increment counts[favorite]
-        # TODO: except KeyError: set counts[favorite] = 1
+        try:
+            counts[favorite] += 1
+        except KeyError:
+            counts[favorite] = 1
 
 for favorite in counts:
     print(f"{favorite}: {counts[favorite]}")

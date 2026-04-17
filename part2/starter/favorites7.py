@@ -5,8 +5,11 @@
 #       The dictionary itself is NOT changed.
 
 import csv
+from pathlib import Path
 
-with open("../week1/favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent.parent / "part1/favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
     counts = {}
     for row in reader:
@@ -21,3 +24,6 @@ with open("../week1/favorites.csv", "r") as file:
 #   C: 40
 #   Python: 196
 #   Scratch: 28
+
+for favorite in sorted(counts):
+    print(f"{favorite}: {counts[favorite]}")
