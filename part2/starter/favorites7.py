@@ -5,8 +5,11 @@
 #       The dictionary itself is NOT changed.
 
 import csv
+from pathlib import Path
 
-with open("../week1/favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent.parent / "part1/favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
     counts = {}
     for row in reader:
