@@ -8,8 +8,12 @@
 # Bonus: DictReader automatically uses the first row as keys — no need for next()
 
 import csv
+from pathlib import Path
 
-with open("favorites.csv", "r") as file:
-    # TODO: Create a csv.DictReader (not csv.reader)
-    # TODO: Loop over rows and print row["language"]
-    pass
+csv_path = Path(__file__).parent.parent / "favorites.csv"
+
+with open(csv_path, "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        language = row["language"]
+        print(language)

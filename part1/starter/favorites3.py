@@ -6,5 +6,11 @@
 # Neither is "wrong" — it depends on the situation.
 
 import csv
+from pathlib import Path
 
-# TODO: Complete this version (it should be only ~5 lines total)
+csv_path = Path(__file__).parent.parent / "favorites.csv"
+
+with open(csv_path, "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row["language"])

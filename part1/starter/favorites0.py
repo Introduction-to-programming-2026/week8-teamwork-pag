@@ -12,8 +12,12 @@
 #       Don't forget to skip the header row with next()
 
 import csv
+from pathlib import Path
 
-# TODO: Open favorites.csv for reading
-# TODO: Create a csv.reader object
-# TODO: Skip the header row using next()
-# TODO: Loop over the remaining rows and print the language column
+csv_path = Path(__file__).parent.parent / "favorites.csv"
+
+with open(csv_path, "r") as file:
+    reader = csv.reader(file)
+    next(reader)
+    for row in reader:
+        print(row[1])

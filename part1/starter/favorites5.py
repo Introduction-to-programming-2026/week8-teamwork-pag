@@ -11,16 +11,23 @@
 #   Scratch: 28
 
 import csv
+from pathlib import Path
 
-with open("favorites.csv", "r") as file:
+csv_path = Path(__file__).parent.parent / "favorites.csv"
+
+with open(csv_path, "r") as file:
     reader = csv.DictReader(file)
 
     counts = {}  # language -> count
 
     for row in reader:
         favorite = row["language"]
-        # TODO: If favorite is already in counts, increment counts[favorite] by 1
-        # TODO: Otherwise, set counts[favorite] = 1
+        match favorite in counts:
+            case None:
+                counts[favorite] = 1
+            case _:
+                counts[favorite] += 1
 
-    # TODO: Print each key-value pair in counts
-    #       Format: "Python: 196"
+    for language, count in counts.items():
+        print(f"{language}: {count}")
+
